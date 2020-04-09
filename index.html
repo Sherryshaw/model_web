@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>用户登录 - 南岗区房管局</title>
+
+  <!-- Custom fonts for this template-->
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="/css/global.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url(/img/map.jpg)"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">南岗区房管局登记注册交易系统</h1>
+                  </div>
+                  <form class="user" id="validate">
+                    <div class="form-group row">
+                      <div class="col-lg-12 mb-3 mb-sm-0">
+                        <select class="form-control" id="type" name="type">
+                          <option value="1">业主</option>
+                          <option value="2">开发商</option>
+                          <option value="3">管理员</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-lg-12 mb-3 mb-sm-0">
+                        <label for="username">账户ID:</label>
+                        <input type="username" class="form-control form-control-user" id="username" name="username"
+                          placeholder="用户身份证/工号/开发商代码">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-lg-12 mb-3 mb-sm-0">
+                        <label for="password">密码:</label>
+                        <input type="password" class="form-control form-control-user" id="password" name="password"
+                          placeholder="密码">
+                      </div>
+                    </div>
+                    <button class="btn btn-primary btn-user btn-block">登录</button>
+                  </form>
+                  <hr>
+                  <div class="text-center">
+                    <a class="small" href="register.html">账户注册</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="/js/global.js"></script>
+  <script>
+    clearcookie();
+    $("#validate").validate({
+      rules: {
+        username: "required",
+        password: "required",
+      },
+      messages: {
+        username: "请输入账户ID",
+        password: "请输入密码",
+      },
+      submitHandler: function (form) {
+        var body = {
+          username: $("#username").val(),
+          password: $("#password").val(),
+          type: $("#type").val(),
+        }
+        var res = post("/pub/login", body);
+        console.log(res);
+        if (res.code == 200) {
+          cookie(res.data.id);
+          var type=parseInt($("#type").val());
+          if(type==1){
+            window.location.href="/page/owner/index.html";
+          }else if(type==2){
+            window.location.href="/page/developer/index.html";
+          }else if(type==3){
+            window.location.href="/page/manager/index.html";
+          }
+        } else {
+          Swal.fire(
+            '登录失败',
+            res.message,
+            'error'
+          )
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+@import url("/vendor/fontawesome-free/css/all.min.css");
+@import url("/css/sb-admin-2.min.css");
+@import url("https://cdn.bootcss.com/limonte-sweetalert2/8.11.8/sweetalert2.min.css");
+@import url("/vendor/datatables/dataTables.bootstrap4.min.css");
+@import url("https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css");
+
+.error{
+  font-size:smaller !important;  
+  width: 100% !important;
+}

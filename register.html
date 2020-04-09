@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>注册 - 南岗区房管局</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="/css/global.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">注册账户!</h1>
+              </div>
+              <form class="user" id="validate">
+                <div class="form-group row">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                    <select class="form-control" id="type" name="type">
+                      <option value="">用户身份</option>
+                      <option value="1">业主</option>
+                      <option value="2">开发商</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                    <input type="number" class="form-control form-control-user" id="id" name="id" placeholder="证件号码">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="姓名">
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                    <input type="password" class="form-control form-control-user" id="pwd" name="pwd" placeholder="密码">
+                  </div>
+                </div>
+                <button class="btn btn-primary btn-user btn-block">注册</button>
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="/index.html">拥有账户? 去登录!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Custom scripts for all pages-->
+  <script src="/js/global.js"></script>
+<script>
+  
+  $("#validate").validate({
+      rules: {
+        id:"required",
+        username: "required",
+        password: "required",
+        type:"required"
+      },
+      messages: {
+        id:"证件号码不能为空",
+        username: "请输入账户ID",
+        password: "请输入密码",
+        type:"请选择证件类型"
+      },
+      submitHandler: function (form) {
+        var body = {
+          id:$("#id").val(),
+          username: $("#name").val(),
+          password: $("#pwd").val(),
+          type: $("#type").val(),
+        }
+        var res = post("/pub/register", body);
+        console.log(res);
+        if (res.code == 200) {
+          console.log(res);
+          Swal.fire(
+            '注册成功',
+            "",
+            'success'
+          )
+          $("#id").val("")
+          $("#name").val("");
+          $("#pwd").val("");
+        } else {
+          Swal.fire(
+            '注册失败',
+            res.message,
+            'error'
+          )
+        }
+      }
+    })
+</script>
+</body>
+
+</html>
