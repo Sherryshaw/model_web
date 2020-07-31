@@ -2,7 +2,7 @@
   "_args": [
     [
       "@fortawesome/fontawesome-free@5.10.2",
-      "D:\\个人目录\\99_所有项目\\08_南岗区房管局登记注册交易管理系统\\01_代码\\Frontend"
+      "D:\\个人目录\\99_所有项目\\12_新闻浏览与管理系统的设计与实现\\01_代码\\Frontend"
     ]
   ],
   "_from": "@fortawesome/fontawesome-free@5.10.2",
@@ -27,7 +27,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.10.2.tgz",
   "_spec": "5.10.2",
-  "_where": "D:\\个人目录\\99_所有项目\\08_南岗区房管局登记注册交易管理系统\\01_代码\\Frontend",
+  "_where": "D:\\个人目录\\99_所有项目\\12_新闻浏览与管理系统的设计与实现\\01_代码\\Frontend",
   "author": {
     "name": "Dave Gandy",
     "email": "dave@fontawesome.com",
